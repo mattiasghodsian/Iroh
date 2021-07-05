@@ -61,7 +61,7 @@ function iroh_enqueue_scripts()
 	wp_enqueue_script('iroh-js', IROH_URI . 'assets/js/iroh.js', ['jquery'], '1.0.0', true);
 
 }
-add_action( 'wp_enqueue_scripts', 'iroh_enqueue_scripts', 20 );
+// add_action( 'wp_enqueue_scripts', 'iroh_enqueue_scripts', 20 );
 
 /**
  * iroh_mime
