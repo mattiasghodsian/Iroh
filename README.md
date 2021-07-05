@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/mattiasghodsian/Iroh/">
-    <img alt="Iroh" src="assets/img/iroh-logo.png?raw=true" height="150">
+    <img alt="Iroh" src="assets/img/iroh.png?raw=true" height="150">
   </a>
 </p>
 
