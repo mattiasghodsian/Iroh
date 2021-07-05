@@ -1,6 +1,6 @@
 <?php
 /**
- * ACF Block Helper class to simplify createing 
+ * ACF Block Helper class to simplify creating 
  * ACF Blocks for Gutenberg
  * 
  * @package Iroh_ACF_Block
