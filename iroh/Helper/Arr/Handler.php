@@ -9,7 +9,7 @@
  * @license GPL 2.0
  */
 
-namespace Helper\Data;
+namespace Helper\Arr;
 
 class Handler
 {
