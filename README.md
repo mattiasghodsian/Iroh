@@ -19,13 +19,13 @@
 ## Overview
 Iroh is a WordPress starter theme which includes some of our favorite tools, helpers and custom solutions, Gets you up and running in no time. Created by developers for developers.
 
-## Features
+## Iroh includes 
 
-- Good folder structure
-- Dependency with [Composer](https://getcomposer.org)
+- Custom Helper Classes
+- [VarDumper](https://github.com/symfony/var-dumper) by Symfony
 - Compile and minify CSS and JavaScript with [Laravel Mix](https://www.npmjs.com/package/laravel-mix)
-- [Bootstrap](https://getbootstrap.com/) & [WP Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
-- Custom solutions and helpers
+- [Bootstrap](https://getbootstrap.com/)
+- [WP Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 
 ## Requirements
 

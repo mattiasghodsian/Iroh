@@ -1,0 +1,15 @@
+// general
+@import "variables";
+@import "mixin";
+
+// componets
+@import "components/example";
+
+// You'r makeup below
+body{
+    background-color: $primary;
+
+    @include mobile(){
+        background-color: $secondary;
+    }
+}

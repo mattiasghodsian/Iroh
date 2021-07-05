@@ -1,6 +1,11 @@
 {
     "require": {
         "symfony/var-dumper": "^5.2",
-        "twbs/bootstrap": "^4.6"
+        "wp-bootstrap/wp-bootstrap-navwalker": "^4.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Helper\\": "iroh/Helper/"
+        }
     }
 }

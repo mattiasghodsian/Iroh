@@ -1,6 +1,12 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+
+// DISABLE COMMENTS
+// DISABLE EMOJIS
+// DISABLE OEMBED
+// add_theme_support('iroh');
+
 /**
  * iroh_setup
  * Sets up theme defaults and registers support for various WordPress features.
