@@ -8,4 +8,4 @@ require_once( IROH_PATH . 'vendor/autoload.php' );
 
 /* Includes */
 require_once( IROH_PATH . 'includes/theme.php' );
-require_once( IROH_PATH . 'includes/acf.php' );
+require_once( IROH_PATH . 'includes/examples.php' );
