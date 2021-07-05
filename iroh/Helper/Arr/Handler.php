@@ -1,6 +1,15 @@
 <?php
 
-namespace Helper\Arr;
+/**
+ * Helper class for object and arrays
+ *
+ * @package Iroh_Helper_Arr
+ * @author Laravel
+ * @source https://github.com/laravel/laravel
+ * @license GPL 2.0
+ */
+
+namespace Helper\Data;
 
 class Handler
 {
