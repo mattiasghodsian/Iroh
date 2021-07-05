@@ -1,7 +1,9 @@
 {
     "require": {
         "symfony/var-dumper": "^5.2",
-        "wp-bootstrap/wp-bootstrap-navwalker": "^4.3"
+        "wp-bootstrap/wp-bootstrap-navwalker": "^4.3",
+        "symfony/validator": "^5.3",
+        "doctrine/annotations": "^1.13"
     },
     "autoload": {
         "psr-4": {
