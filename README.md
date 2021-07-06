@@ -2,6 +2,7 @@
   <a href="https://github.com/mattiasghodsian/Iroh/">
     <img alt="Iroh" src="assets/img/iroh.png?raw=true" height="150">
   </a>
+  <p  align="center">Iroh The WordPress Starter Theme For Developers</p>
 </p>
 
 <p align="center">
