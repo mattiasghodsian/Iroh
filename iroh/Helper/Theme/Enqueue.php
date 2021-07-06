@@ -20,54 +20,61 @@ class Enqueue {
     protected $styles = [];
 
     /**
-     * construct
+     * Construct
      * 
-     * @since 1.0
      * @return void
      */
     public function __construct(){
-        add_action( 'wp_enqueue_scripts', [$this, 'load_enqueues'], 20 );   
+        add_action( 'wp_enqueue_scripts', [$this, 'enqueue'], 20 );   
+        add_action( 'admin_enqueue_scripts', [$this, 'enqueue'], 20, true );   
     }
 
     /** 
-     * load enqueued scripts.
+     * Enqueued scripts.
      * 
-     * @since 1.0
+     * @param bool $admin
      * @return void
      */
-    public function load_enqueues(){
+    public function enqueue(bool $admin = false){
 
         if ($this->styles){
             foreach ($this->styles as $key => $style){
-                wp_enqueue_style( 
-                    $style['name'],
-                    $style['path'],
-                    [],
-                    $style['version']
-                );
+                if( $style['admin'] === $admin ){
+                    wp_enqueue_style( 
+                        $style['name'],
+                        $style['path'],
+                        [],
+                        $style['version']
+                    );
+                }
+                
             }
         }
 
         if ($this->scripts){
             foreach ($this->scripts as $key => $script){
-                wp_enqueue_script( 
-                    $script['name'],
-                    $script['path'],
-                    ['jquery'],
-                    $script['version'],
-                    true
-                );
+                if( $script['admin'] === $admin ){
+                    wp_enqueue_script( 
+                        $script['name'],
+                        $script['path'],
+                        ['jquery'],
+                        $script['version'],
+                        true
+                    );
+                }
+                
             }
         }
     }
 
     /** 
-     * Add enqueued
+     * Add enqueue
      * 
-     * @since 1.0
+     * @param array $data
+     * @param bool $admin
      * @return void
      */
-    public function add(array $data){
+    public function add(array $data, bool $admin = false){
 
         $validate = $this->validate($data);
 
@@ -75,6 +82,8 @@ class Enqueue {
             trigger_error("Array not valid", E_USER_ERROR);
             return $validate;
         }
+
+        $data['admin'] = $admin;
 
         if ( strpos($data['path'], '.css') == true ){
             $this->styles[] = $data;

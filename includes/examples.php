@@ -36,7 +36,7 @@ $theme->add([
     'name'      => 'app', 
     'path'      => IROH_URI . 'assets/app.js',
     'version'   => '1.0.0',
-]);
+], true);
 
 /**
  * Array handler
@@ -91,4 +91,4 @@ $cron->add_event([
     'wp_error'      => false,
 ]);
 
-dump( $cron->registry() );
+// dump( $cron->registry() );
