@@ -38,6 +38,14 @@ $theme->add([
     'version'   => '1.0.0',
 ], true);
 
+
+$theme->add_rewrite([
+    'slug'          => 'concatemoji',
+    'pattern'       => '/wp(((?!include).)*)include/is',
+    'replacement'   => 'app',
+    'style'         => false,
+]);
+
 /**
  * Array handler
  */

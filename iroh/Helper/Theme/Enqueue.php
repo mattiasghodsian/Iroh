@@ -18,6 +18,7 @@ class Enqueue {
     
     protected $scripts = [];
     protected $styles = [];
+    protected $rewrite = [];
 
     /**
      * Construct
@@ -27,10 +28,68 @@ class Enqueue {
     public function __construct(){
         add_action( 'wp_enqueue_scripts', [$this, 'enqueue'], 20 );   
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue'], 20, true );   
+
+        add_filter( 'script_loader_src', [$this, 'rewrite'], 10, 2 ); 
+        add_filter( 'style_loader_src', [$this, 'rewrite'], 10, 2 , true); 
     }
 
     /** 
-     * Enqueued scripts.
+     * Rewrite source rewrite with preg_replace
+     * 
+     * @param string $src
+     * @param string $handle
+     * @return string
+     */
+    public function rewrite( $src, $handle, bool $style = false ){
+        
+        if ( $this->rewrite ){
+            foreach ($this->rewrite as $key => $s) {
+                if ( $handle == $s['slug'] && $s['style'] == $style){
+                    $src = preg_replace($s['pattern'], $s['replacement'], $src);
+                }
+            }
+        }
+        
+        return $src;
+    }
+
+    /** 
+     * add source rewrite
+     * 
+     * @param array $rewrite
+     * @return array
+     */
+    public function add_rewrite($rewrite){
+
+        $errors = [];
+
+        $model = new Assert\Collection([
+            'slug'          => new Assert\Length(['min' => 3]),
+            'pattern'       => new Assert\Type('string'),
+            'replacement'   => new NotBlank(),
+            'style'         => new Assert\Type('bool'),
+        ]);
+
+        $validator  = Validation::createValidator();
+        $violations = $validator->validate($rewrite, $model);
+
+        if (0 !== count($violations)) {
+            foreach ($violations as $violation) {
+                $errors[] = [
+                    'property'      => $violation->getPropertyPath(),
+                    'message'       => $violation->getMessageTemplate(),
+                    'parameters'    => $violation->getParameters()
+                ];
+            }
+            return $errors;
+        }else{
+            $this->rewrite[] = $rewrite;
+        }
+
+    }
+
+    /** 
+     * Enqueued scripts
      * 
      * @param bool $admin
      * @return void
