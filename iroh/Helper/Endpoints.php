@@ -25,7 +25,7 @@ class Endpoints
 
     public function buildArray(string $namespace, string $route, array $args)
     {
-        if (!isset($namespace) || !isset($route) || empty($args)) {
+        if (!isset($namespace) || !isset($route)) {
             return $this;
         }
 
