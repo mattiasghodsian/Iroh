@@ -3,7 +3,7 @@
  * This Helper class simplifys adding API Endpoints
  *
  * @package Iroh_Endpoints
- * @author Martin Myrmarker
+ * @author Mattias Ghodsian
  * @source https://github.com/mattiasghodsian/Iroh
  * @license GPL 2.0
  */
