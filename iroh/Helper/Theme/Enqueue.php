@@ -34,11 +34,11 @@ class Enqueue {
     }
 
     /** 
-     * Rewrite source rewrite with preg_replace
+     * Rewrite source with preg_replace
      * 
      * @param string $src
      * @param string $handle
-     * @param bool $style false
+     * @param bool $style default false
      * @return string
      */
     public function rewrite( $src, $handle, bool $style = false ){
