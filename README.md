@@ -26,6 +26,7 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 - [Symfony VarDumper](https://github.com/symfony/var-dumper)
 - [Symfony Validator](https://github.com/symfony/validator)
 - [Laravel Mix](https://www.npmjs.com/package/laravel-mix)
+- [Inputmask](https://github.com/RobinHerbots/Inputmask)
 - [Bootstrap](https://getbootstrap.com/)
 - [WP Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 
