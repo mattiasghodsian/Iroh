@@ -38,6 +38,7 @@ class Enqueue {
      * 
      * @param string $src
      * @param string $handle
+     * @param bool $style false
      * @return string
      */
     public function rewrite( $src, $handle, bool $style = false ){
