@@ -23,9 +23,9 @@ class Endpoints
         });
     }
 
-    public function buildArray($namespace, $route, $args)
+    public function buildArray(string $namespace, string $route, array $args)
     {
-        if (!isset($namespace) || !isset($route) || !isset($args)) {
+        if (!isset($namespace) || !isset($route) || empty($args)) {
             return $this;
         }
 
