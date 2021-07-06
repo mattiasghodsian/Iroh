@@ -7,13 +7,16 @@
 
 <p align="center">
   <a href="LICENSE">
-    <img alt="GPL-2.0 License" src="https://img.shields.io/badge/license-GPL--2.0-purple/?style=flat-square" />
+    <img alt="GPL-2.0 License" src="https://img.shields.io/badge/license-GPL--2.0-purple/" />
   </a>
   <a href="https://github.com/mattiasghodsian/Iroh/">
-    <img alt="Build Status" src="https://img.shields.io/github/stars/mattiasghodsian/iroh?style=flat-square" />
+    <img alt="Build Status" src="https://img.shields.io/github/stars/mattiasghodsian/iroh" />
   </a>
   <a href="https://github.com/mattiasghodsian/Iroh/">
-    <img alt="Contributors" src="https://img.shields.io/github/contributors/mattiasghodsian/iroh?style=flat-square">  
+    <img alt="Contributors" src="https://img.shields.io/github/contributors/mattiasghodsian/iroh">  
+  </a>
+  <a href="https://en.cryptobadges.io/donate/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5">
+    <img alt="Contributors" src="https://en.cryptobadges.io/badge/micro/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5">  
   </a>
 </p>
 
