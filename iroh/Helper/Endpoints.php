@@ -85,6 +85,8 @@ class Endpoints
                     'parameters' => $violation->getParameters(),
                 ];
             }
+
+            //Throw exception instead of return here
             return $errors;
         } else {
             return $args;
