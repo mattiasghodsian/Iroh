@@ -19,7 +19,6 @@ class Endpoints
 {
     private $actions;
     private $handler;
-    private $dataGet;
 
     public function __construct()
     {
