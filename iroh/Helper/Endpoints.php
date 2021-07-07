@@ -10,15 +10,37 @@
 
 namespace Helper;
 
+use Helper\Arr\Handler;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Validation;
+
 class Endpoints
 {
     private $actions;
+    private $handler;
+    private $dataGet;
+
+    public function __construct()
+    {
+        $this->handler = new Handler;
+    }
 
     public function addTheActions()
     {
         add_action('rest_api_init', function () {
             foreach ($this->actions as $action) {
-                register_rest_route($action['namespace'], $action['route'], $action['args']);
+
+                $validated = $this->validateArgs(
+                    $this->handler->data_get($action, 'args')
+                );
+
+                register_rest_route(
+                    $this->handler->data_get($action, 'namespace'),
+                    $this->handler->data_get($action, 'route'),
+                    $validated
+                );
+
             }
         });
     }
@@ -35,6 +57,39 @@ class Endpoints
             'args'      => $args,
         ];
         return $this;
+    }
+
+    public function validateArgs($args)
+    {
+        $errors = [];
+
+        $model = new Assert\Collection([
+            'methods'             => [
+                new NotBlank(),
+            ],
+            'callback'            => [
+                new NotBlank(),
+            ],
+            'permission_callback' => [
+                new NotBlank(),
+            ],
+        ]);
+
+        $validator  = Validation::createValidator();
+        $violations = $validator->validate($args, $model);
+
+        if (0 !== count($violations)) {
+            foreach ($violations as $violation) {
+                $errors[] = [
+                    'property'   => $violation->getPropertyPath(),
+                    'message'    => $violation->getMessageTemplate(),
+                    'parameters' => $violation->getParameters(),
+                ];
+            }
+            return $errors;
+        } else {
+            return $args;
+        }
     }
 
 }
