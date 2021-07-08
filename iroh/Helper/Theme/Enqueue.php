@@ -144,7 +144,7 @@ class Enqueue {
         $validate = $this->validate($data);
 
         if ( $validate !== true ){
-            trigger_error("Array not valid", E_USER_ERROR);
+            $this->errorHandler->dump(['Array not valid']);
             return $validate;
         }
 
@@ -187,6 +187,8 @@ class Enqueue {
             }
             $this->errorHandler->dump($errors);
         }
+
+        return true;
 
     }
     
