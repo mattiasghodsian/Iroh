@@ -18,56 +18,123 @@ class Enqueue {
     
     protected $scripts = [];
     protected $styles = [];
+    protected $rewrite = [];
 
     /**
-     * construct
+     * Construct
      * 
-     * @since 1.0
      * @return void
      */
     public function __construct(){
-        add_action( 'wp_enqueue_scripts', [$this, 'load_enqueues'], 20 );   
+        add_action( 'wp_enqueue_scripts', [$this, 'enqueue'], 20 );   
+        add_action( 'admin_enqueue_scripts', [$this, 'enqueue'], 20, true );   
+
+        add_filter( 'script_loader_src', [$this, 'rewrite'], 10, 2 ); 
+        add_filter( 'style_loader_src', [$this, 'rewrite'], 10, 2 , true); 
     }
 
     /** 
-     * load enqueued scripts.
+     * Rewrite source rewrite with preg_replace
      * 
-     * @since 1.0
+     * @param string $src
+     * @param string $handle
+     * @param bool $style false
+     * @return string
+     */
+    public function rewrite( $src, $handle, bool $style = false ){
+        
+        if ( $this->rewrite ){
+            foreach ($this->rewrite as $key => $s) {
+                if ( $handle == $s['slug'] && $s['style'] == $style){
+                    $src = preg_replace($s['pattern'], $s['replacement'], $src);
+                }
+            }
+        }
+        
+        return $src;
+    }
+
+    /** 
+     * add source rewrite
+     * 
+     * @param array $rewrite
+     * @return array
+     */
+    public function add_rewrite($rewrite){
+
+        $errors = [];
+
+        $model = new Assert\Collection([
+            'slug'          => new Assert\Length(['min' => 3]),
+            'pattern'       => new Assert\Type('string'),
+            'replacement'   => new NotBlank(),
+            'style'         => new Assert\Type('bool'),
+        ]);
+
+        $validator  = Validation::createValidator();
+        $violations = $validator->validate($rewrite, $model);
+
+        if (0 !== count($violations)) {
+            foreach ($violations as $violation) {
+                $errors[] = [
+                    'property'      => $violation->getPropertyPath(),
+                    'message'       => $violation->getMessageTemplate(),
+                    'parameters'    => $violation->getParameters()
+                ];
+            }
+            return $errors;
+        }else{
+            $this->rewrite[] = $rewrite;
+        }
+
+    }
+
+    /** 
+     * Enqueued scripts
+     * 
+     * @param bool $admin
      * @return void
      */
-    public function load_enqueues(){
+    public function enqueue(bool $admin = false){
 
         if ($this->styles){
             foreach ($this->styles as $key => $style){
-                wp_enqueue_style( 
-                    $style['name'],
-                    $style['path'],
-                    [],
-                    $style['version']
-                );
+                if( $style['admin'] === $admin ){
+                    wp_enqueue_style( 
+                        $style['name'],
+                        $style['path'],
+                        [],
+                        $style['version']
+                    );
+                }
+                
             }
         }
 
         if ($this->scripts){
             foreach ($this->scripts as $key => $script){
-                wp_enqueue_script( 
-                    $script['name'],
-                    $script['path'],
-                    ['jquery'],
-                    $script['version'],
-                    true
-                );
+                if( $script['admin'] === $admin ){
+                    wp_enqueue_script( 
+                        $script['name'],
+                        $script['path'],
+                        ['jquery'],
+                        $script['version'],
+                        true
+                    );
+                }
+                
             }
         }
     }
 
     /** 
-     * Add enqueued
+     * Add enqueue
      * 
-     * @since 1.0
+     * @param array $data
+     * @param bool $admin
      * @return void
      */
-    public function add(array $data){
+    public function add(array $data, bool $admin = false){
 
         $validate = $this->validate($data);
 
@@ -75,6 +142,8 @@ class Enqueue {
             trigger_error("Array not valid", E_USER_ERROR);
             return $validate;
         }
+
+        $data['admin'] = $admin;
 
         if ( strpos($data['path'], '.css') == true ){
             $this->styles[] = $data;

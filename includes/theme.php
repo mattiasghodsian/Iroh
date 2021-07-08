@@ -37,7 +37,7 @@ function iroh_setup()
     /* Register nav menus */
     register_nav_menus(
         array(
-            'menu-1' => __( 'Primary', 'iroh' ),
+            'primary' => __( 'Primary', 'iroh' ),
             'footer' => __( 'Footer Menu', 'iroh' ),
         )
     );

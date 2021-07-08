@@ -2,6 +2,7 @@
   <a href="https://github.com/mattiasghodsian/Iroh/">
     <img alt="Iroh" src="assets/img/iroh.png?raw=true" height="150">
   </a>
+  <p  align="center">Iroh The WordPress Starter Theme For Developers</p>
 </p>
 
 <p align="center">
@@ -25,6 +26,8 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 - [Symfony VarDumper](https://github.com/symfony/var-dumper)
 - [Symfony Validator](https://github.com/symfony/validator)
 - [Laravel Mix](https://www.npmjs.com/package/laravel-mix)
+- [Inputmask](https://github.com/RobinHerbots/Inputmask)
+- [SweetAlert2](https://github.com/sweetalert2/sweetalert2)
 - [Bootstrap](https://getbootstrap.com/)
 - [WP Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 

@@ -11,6 +11,9 @@
 
 namespace Helper\Block;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Validation;
+
 class Acf {
     private $blocks;
 
@@ -48,6 +51,15 @@ class Acf {
      * @return void
      */
     public function add($array){
+        // $blocks = [
+        //     [
+        //         'name'              => 'example',
+        //         'title'             => __('Example', 'iroh'),
+        //         'description'       => __('Example description', 'iroh'),
+        //         'render_callback'   => [$this, 'render'],
+        //         'mode'              => 'edit'
+        //     ]
+        // ];
         $this->blocks = $array;
     }
 
@@ -58,19 +70,13 @@ class Acf {
      * @return void
      */
     public function register(){
-        // $blocks = [
-        //     [
-        //         'name'              => 'example',
-        //         'title'             => __('Example', 'iroh'),
-        //         'description'       => __('Example description', 'iroh'),
-        //         'render_callback'   => [$this, 'render'],
-        //         'mode'              => 'edit'
-        //     ]
-        // ];
-
-        foreach ($this->blocks as $key => $block) {
-            $block['render_callback'] = [$this, 'render'];
-            acf_register_block($block);
+        if ( $this->blocks ){
+            foreach ($this->blocks as $key => $block) {
+                if ( !array_key_exists( 'render_callback', $block) ) {
+                    $block['render_callback'] = [$this, 'render'];
+                }
+                acf_register_block($block);
+            }
         }
     }
 }
