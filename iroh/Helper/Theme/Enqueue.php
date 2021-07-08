@@ -10,6 +10,7 @@
 
 namespace Helper\Theme;
 
+use Helper\ErrorHandler;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -19,6 +20,7 @@ class Enqueue {
     protected $scripts = [];
     protected $styles = [];
     protected $rewrite = [];
+    public $errorHandler;
 
     /**
      * Construct
@@ -26,6 +28,9 @@ class Enqueue {
      * @return void
      */
     public function __construct(){
+
+        $this->errorHandler = new ErrorHandler;
+
         add_action( 'wp_enqueue_scripts', [$this, 'enqueue'], 20 );   
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue'], 20, true );   
 
@@ -82,7 +87,7 @@ class Enqueue {
                     'parameters'    => $violation->getParameters()
                 ];
             }
-            return $errors;
+            $this->errorHandler->dump($errors);
         }else{
             $this->rewrite[] = $rewrite;
         }
@@ -180,10 +185,9 @@ class Enqueue {
                     'parameters'    => $violation->getParameters()
                 ];
             }
-            return $errors;
+            $this->errorHandler->dump($errors);
         }
 
-        return true;   
     }
     
 }
