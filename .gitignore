@@ -1,5 +1,4 @@
 composer.lock
 vendor/
 node_modules/
-assets/app.css
-assets/app.js
+assets/*.*
