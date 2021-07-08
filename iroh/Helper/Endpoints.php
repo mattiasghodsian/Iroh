@@ -11,6 +11,7 @@
 namespace Helper;
 
 use Helper\Arr\Handler;
+use Helper\ErrorHandler;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Validation;
@@ -19,12 +20,17 @@ class Endpoints
 {
     private $actions;
     private $handler;
+    public $errorHandler;
 
     public function __construct()
     {
-        $this->handler = new Handler;
+        $this->handler      = new Handler;
+        $this->errorHandler = new ErrorHandler;
     }
 
+    /**
+     * Add action
+     */
     public function addTheActions()
     {
         add_action('rest_api_init', function () {
@@ -44,6 +50,14 @@ class Endpoints
         });
     }
 
+    /**
+     * Builds array of args for register_rest_route
+     *
+     * @param string $namespace
+     * @param string $route
+     * @param array $args
+     * @return this
+     */
     public function buildArray(string $namespace, string $route, array $args)
     {
         if (!isset($namespace) || !isset($route)) {
@@ -58,6 +72,12 @@ class Endpoints
         return $this;
     }
 
+    /**
+     * Validate args
+     *
+     * @param array $args
+     * @return array $args
+     */
     public function validateArgs($args)
     {
         $errors = [];
@@ -86,8 +106,7 @@ class Endpoints
                 ];
             }
 
-            //Throw exception instead of return here
-            return $errors;
+            $this->errorHandler->dump($errors);
         } else {
             return $args;
         }

@@ -1,6 +1,5 @@
 {
     "require": {
-        "symfony/var-dumper": "^5.2",
         "wp-bootstrap/wp-bootstrap-navwalker": "^4.3",
         "symfony/validator": "^5.3",
         "doctrine/annotations": "^1.13"
@@ -9,5 +8,8 @@
         "psr-4": {
             "Helper\\": "iroh/Helper/"
         }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
     }
 }
