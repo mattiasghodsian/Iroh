@@ -11,15 +11,24 @@
 
 namespace Helper\Theme;
 
+use Helper\Theme\Taxonomy;
+
 class PostType
 {
+    /**
+     * @var string $name
+     * @var array $labels
+     * @var array $args
+     */
+    protected $name;
+    protected $labels;
+    protected $args;
 
-    public $name;
-    public $labels;
-    public $args;
-
-    public function __construct(string $name, array $labels, array $args)
-    {
+    public function __construct(
+        string $name,
+        array $labels,
+        array $args
+    ) {
         $this->name   = strtolower($name);
         $this->labels = $labels;
         $this->args   = $args;
@@ -35,39 +44,53 @@ class PostType
      */
     public function register()
     {
-        //Default
-        $labels = array(
-            'name'               => $this->name,
+        $plural = $this->getNamePlural($this->name);
+        $labels = [
+            'name'               => $plural,
             'singular_name'      => $this->name,
             'add_new'            => 'Add New',
-            'add_new_item'       => 'Add New ' . $this->name,
-            'edit_item'          => 'Edit ' . $this->name,
-            'new_item'           => 'New ' . $this->name,
-            'all_items'          => 'All ' . $this->getNamePlural(),
-            'view_item'          => 'View ' . $this->name,
-            'search_items'       => 'Search ' . $this->getNamePlural(),
-            'not_found'          => 'No ' . $this->name . ' found',
-            'not_found_in_trash' => 'No ' . $this->name . ' found in Trash',
+            'add_new_item'       => sprintf('Add New %s', $this->name),
+            'edit_item'          => sprintf('Edit ', $this->name),
+            'new_item'           => sprintf('New ', $this->name),
+            'all_items'          => sprintf('All %s', $plural),
+            'view_item'          => sprintf('View %s', $this->name),
+            'search_items'       => sprintf('Search %s', $plural),
+            'not_found'          => sprintf('No %s found', $this->name),
+            'not_found_in_trash' => sprintf('No %s found in Trash', $this->name),
             'parent_item_colon'  => '',
             'menu_name'          => $this->name,
-        );
-        $args = array(
+        ];
+        $args = [
             'labels'      => array_merge($labels, $this->labels),
             'public'      => true,
-            'supports'    => array('title', 'editor', 'thumbnail', 'excerpt', 'comments'),
+            'supports'    => [
+                'title',
+                'editor',
+                'thumbnail',
+                'excerpt',
+                'comments',
+            ],
             'has_archive' => true,
-        );
+        ];
 
-        register_post_type($this->name, array_merge($args, $this->args));
+        register_post_type($plural, array_merge($args, $this->args));
     }
 
     /**
      * Adds taxonomy to the post type
      *
      */
-    private function addTaxonomy()
-    {
-
+    public function addTaxonomy(
+        string $taxonomyName,
+        array $args,
+        array $labels
+    ) {
+        new Taxonomy(
+            $this->getNamePlural($this->name),
+            $taxonomyName,
+            $args,
+            $labels
+        );
     }
 
     /**
@@ -75,8 +98,8 @@ class PostType
      *
      * @return string
      */
-    private function getNamePlural()
+    public function getNamePlural($name)
     {
-        return $this->name . 's';
+        return $name . 's';
     }
 }
