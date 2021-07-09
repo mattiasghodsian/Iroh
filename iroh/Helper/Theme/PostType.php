@@ -11,31 +11,22 @@
 
 namespace Helper\Theme;
 
+use Helper\Arr\Handler;
 use Helper\Theme\Taxonomy;
 
 class PostType
 {
-    /**
-     * @var string $name
-     * @var array $labels
-     * @var array $args
-     */
-    protected $name;
-    protected $labels;
-    protected $args;
+    protected $postTypes;
+    protected $handler;
+    protected $taxonomy;
 
-    public function __construct(
-        string $name,
-        array $labels,
-        array $args
-    ) {
-        $this->name   = strtolower($name);
-        $this->labels = $labels;
-        $this->args   = $args;
+    public function __construct()
+    {
+        $this->postTypes = [];
+        $this->handler   = new Handler;
+        $this->taxonomy  = new Taxonomy;
 
-        if (!post_type_exists($this->name)) {
-            add_action('init', [$this, 'register']);
-        }
+        add_action('init', [$this, 'register']);
     }
 
     /**
@@ -44,36 +35,70 @@ class PostType
      */
     public function register()
     {
-        $plural = $this->getNamePlural($this->name);
-        $labels = [
-            'name'               => $plural,
-            'singular_name'      => $this->name,
-            'add_new'            => 'Add New',
-            'add_new_item'       => sprintf('Add New %s', $this->name),
-            'edit_item'          => sprintf('Edit ', $this->name),
-            'new_item'           => sprintf('New ', $this->name),
-            'all_items'          => sprintf('All %s', $plural),
-            'view_item'          => sprintf('View %s', $this->name),
-            'search_items'       => sprintf('Search %s', $plural),
-            'not_found'          => sprintf('No %s found', $this->name),
-            'not_found_in_trash' => sprintf('No %s found in Trash', $this->name),
-            'parent_item_colon'  => '',
-            'menu_name'          => $this->name,
-        ];
-        $args = [
-            'labels'      => array_merge($labels, $this->labels),
-            'public'      => true,
-            'supports'    => [
-                'title',
-                'editor',
-                'thumbnail',
-                'excerpt',
-                'comments',
-            ],
-            'has_archive' => true,
-        ];
+        if (!empty($this->postTypes)) {
+            foreach ($this->postTypes as $postType) {
 
-        register_post_type($plural, array_merge($args, $this->args));
+                $plural = $this->getNamePlural(
+                    $this->handler->data_get($postType, 'name')
+                );
+                $singular = $this->handler->data_get($postType, 'name');
+                $labels   = [
+                    'name'               => $plural,
+                    'singular_name'      => $singular,
+                    'add_new'            => 'Add New',
+                    'add_new_item'       => sprintf('Add New %s', $singular),
+                    'edit_item'          => sprintf('Edit ', $singular),
+                    'new_item'           => sprintf('New ', $singular),
+                    'all_items'          => sprintf('All %s', $plural),
+                    'view_item'          => sprintf('View %s', $singular),
+                    'search_items'       => sprintf('Search %s', $plural),
+                    'not_found'          => sprintf('No %s found', $singular),
+                    'not_found_in_trash' => sprintf('No %s found in Trash', $singular),
+                    'parent_item_colon'  => '',
+                    'menu_name'          => $singular,
+                ];
+                $args = [
+                    'labels'      => array_merge(
+                        $labels,
+                        $this->handler->data_get($postType, 'labels')
+                    ),
+                    'public'      => true,
+                    'supports'    => [
+                        'title',
+                        'editor',
+                        'thumbnail',
+                        'excerpt',
+                        'comments',
+                    ],
+                    'has_archive' => true,
+                ];
+
+                register_post_type(
+                    strtolower($plural),
+                    array_merge($args, $this->handler->data_get($postType, 'args'))
+                );
+            }
+        }
+
+    }
+
+    /**
+     * Add post type
+     *
+     * @param string $name
+     * @param array $labels
+     * @param array $args
+     * @return void
+     */
+    public function add(string $name, array $labels, array $args)
+    {
+        if (!post_type_exists($name)) {
+            $this->postTypes[] = [
+                'name'   => $name,
+                'labels' => $labels,
+                'args'   => $args,
+            ];
+        }
     }
 
     /**
@@ -82,14 +107,15 @@ class PostType
      */
     public function addTaxonomy(
         string $taxonomyName,
+        array $labels,
         array $args,
-        array $labels
+        string $postTypeName
     ) {
-        new Taxonomy(
-            $this->getNamePlural($this->name),
+        $this->taxonomy->addTax(
             $taxonomyName,
+            $labels,
             $args,
-            $labels
+            $postTypeName
         );
     }
 
@@ -102,4 +128,5 @@ class PostType
     {
         return $name . 's';
     }
+
 }

@@ -122,5 +122,6 @@ function iroh_get_svg($url, $color = "")
  * To overwrite default label and args insert items in the arrays.
  *
  */
-$book = new PostType('Iroh', [], []);
-$book->addTaxonomy('Irohtaxonomy', [], []);
+$book = new PostType();
+$book->add('Iroh', [], []);
+$book->addTaxonomy('test', [], [], 'Iroh');
