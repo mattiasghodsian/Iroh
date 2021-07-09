@@ -19,6 +19,7 @@ class Taxonomy extends PostType
 
     /**
      * @var array $taxonomies
+     * @var class $handler
      */
     protected $taxonomies;
     protected $handler;
@@ -85,6 +86,7 @@ class Taxonomy extends PostType
      * @param string $name
      * @param array $labels
      * @param array $args
+     * @param string $postTypeName
      * @return void
      */
     public function addTax(

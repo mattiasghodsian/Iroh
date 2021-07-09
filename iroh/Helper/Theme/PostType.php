@@ -16,6 +16,11 @@ use Helper\Theme\Taxonomy;
 
 class PostType
 {
+    /**
+     * @var array $postTypes
+     * @var class $handler
+     * @var string $taxonomy
+     */
     protected $postTypes;
     protected $handler;
     protected $taxonomy;
@@ -32,6 +37,7 @@ class PostType
     /**
      * Registers the post type
      *
+     * @return void
      */
     public function register()
     {
@@ -104,6 +110,11 @@ class PostType
     /**
      * Adds taxonomy to the post type
      *
+     * @param string $taxonomyName
+     * @param array $labels
+     * @param array $args
+     * @param string $postTypeName
+     * @return void
      */
     public function addTaxonomy(
         string $taxonomyName,
@@ -122,6 +133,7 @@ class PostType
     /**
      * Return Custom post type name in plural
      *
+     * @param string $name
      * @return string
      */
     public function getNamePlural($name)
