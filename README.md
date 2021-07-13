@@ -20,8 +20,25 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/mattiasghodsian/Iroh/wiki">
+    Documentation
+  </a>
+  |
+  <a href="CHANGELOG">
+    Change Log 
+  </a>
+</p>
+
 ## Overview
 Iroh is a WordPress starter theme which includes some of our favorite tools, helpers and custom solutions, Gets you up and running in no time. Created by developers for developers.
+
+## Requirements
+
+- [WordPress](https://wordpress.org/download/)
+- [Composer](https://getcomposer.org/doc/00-intro.md)
+- [NPM](https://www.npmjs.com/get-npm)
+
 
 ## Iroh includes 
 
@@ -34,12 +51,20 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 - [Bootstrap](https://getbootstrap.com/)
 - [WP Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 
-## Requirements
-
-- [WordPress](https://wordpress.org/download/)
-- [Composer](https://getcomposer.org/doc/00-intro.md)
-- [NPM](https://www.npmjs.com/get-npm)
-
-# Documentation
-
-Read the full documentation available at [https://github.com/mattiasghodsian/Iroh/wiki](https://github.com/mattiasghodsian/Iroh/wiki).
+## Theme structure
+```bash
+.
+├── acf-json
+├── assets
+│   ├── img
+│   └── src
+├── includes
+├── iroh
+│   └── Helper
+├── languages
+├── node_modules
+├── template-parts
+│   ├── acf-blocks
+│   └── global
+└── vendor
+```
