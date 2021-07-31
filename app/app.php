@@ -3,29 +3,30 @@ if (!defined('ABSPATH')) { exit; }
 
 /*
 |--------------------------------------------------------------------------
-| Defines a named constant at runtime.
+| Register Iroh Helpers
 |--------------------------------------------------------------------------
 */
-define("APP_PATH", get_template_directory() . '/');
-define("APP_URI", get_stylesheet_directory_uri() . '/');
-define('APP_DOMAIN', 'iroh');
+require APP_PATH . 'src/iroh.php';
 
 /*
 |--------------------------------------------------------------------------
-| Register The Auto Loader
+| Register WP Bootstrap NavWalker
 |--------------------------------------------------------------------------
 */
-if ( !file_exists($composer = APP_PATH . 'vendor/autoload.php') ) {
-    wp_die(
-        __('Error locating autoloader. Run <code>composer install</code>.', APP_DOMAIN)
-    );
+require APP_PATH . 'vendor/wp-bootstrap/wp-bootstrap-navwalker/class-wp-bootstrap-navwalker.php';
+
+/*
+|--------------------------------------------------------------------------
+| Theme setup
+|--------------------------------------------------------------------------
+*/
+require APP_PATH . 'app/theme.php';
+
+/*
+|--------------------------------------------------------------------------
+| Test new features or changes
+|--------------------------------------------------------------------------
+*/
+if ( file_exists(APP_PATH . 'app/test.php') ) {
+    require APP_PATH . 'app/test.php';
 }
-
-require $composer;
-
-/*
-|--------------------------------------------------------------------------
-| Register Theme Files
-|--------------------------------------------------------------------------
-*/
-require_once APP_PATH . 'app/app.php';

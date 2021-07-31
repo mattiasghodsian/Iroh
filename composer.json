@@ -6,7 +6,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Helper\\": "iroh/Helper/"
+            "Helper\\": "src/Helper/"
         }
     },
     "require-dev": {

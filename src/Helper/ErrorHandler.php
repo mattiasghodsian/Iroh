@@ -28,7 +28,6 @@ class ErrorHandler
     public function dump(array $errors)
     {
         dump($this->msg, $errors);
-
         die();
     }
 }

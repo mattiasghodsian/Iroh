@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This Helper class simplifys adding scripts
  * 

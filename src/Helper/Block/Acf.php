@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ACF Block Helper class to simplify creating 
  * ACF Blocks for Gutenberg
@@ -39,8 +40,8 @@ class Acf {
     private function render($block){
         $slug = str_replace('acf/', '', $block['name']);
 
-        if (file_exists(IROH_PATH."/template-parts/acf-blocks/block-{$slug}.php")) {
-            include (IROH_PATH."/template-parts/acf-blocks/block-{$slug}.php");
+        if (file_exists(APP_PATH."/template-parts/acf-blocks/block-{$slug}.php")) {
+            include (APP_PATH."/template-parts/acf-blocks/block-{$slug}.php");
         }
     }
 

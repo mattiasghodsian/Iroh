@@ -1,0 +1,61 @@
+<?php
+/**
+ * Register Iroh Helpers as functions
+ * 
+ * @author Mattias Ghodsian
+ * @source https://github.com/mattiasghodsian/Iroh
+ * @license GPL 2.0
+ */
+
+if ( !defined('ABSPATH') ) { 
+    exit;
+}
+
+if ( !function_exists('endpoints') ){
+    function endpoints()
+    {
+        return new \Helper\Endpoints();
+    }
+}
+
+if ( !function_exists('enqueue') ){
+    function enqueue()
+    {
+        return new \Helper\Theme\Enqueue();
+    }
+}
+
+if ( !function_exists('cronjob') ){
+    function cronjob()
+    {
+        return new \Helper\Cronjob();
+    }
+}
+
+if ( !function_exists('posttype') ){
+    function posttype()
+    {
+        return new \Helper\Theme\PostType();
+    }
+}
+
+if ( !function_exists('data_get') ){
+    function data_get($target, $key, $default = null)
+    {
+        $arr_handler = new \Helper\Arr\Handler();
+        return $arr_handler->data_get($target, $key, $default);
+    }
+}
+
+if ( !function_exists('acfblock') ){
+    function acfblock()
+    {
+        if ( !in_array("advanced-custom-fields/acf.php", get_option("active_plugins")) && !function_exists('acf_register_block') ) {
+            wp_die(
+                "Error locating <b>acf_register_block</b> function, Activate <b>Advanced Custom Fields</b> Plugin.",
+                "iroh"
+            );
+        }
+        return new \Helper\Block\Acf();
+    }
+}
