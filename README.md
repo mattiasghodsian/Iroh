@@ -68,3 +68,21 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 │   └── global
 └── vendor
 ```
+
+## Get started
+1. Navigate to themes folder in your WordPress installation and clone the repository
+  ```sh
+  $ git clone git@github.com:mattiasghodsian/Iroh.git
+  ```
+2. Install composer dependencies
+  ```sh
+  $ composer install
+  ```
+3. Install npm packages
+  ```sh
+  $ npm install
+  ```
+4. Get a cup of coffee and writing your new theme in
+  ```sh
+  iroh/app/
+  ```
