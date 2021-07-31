@@ -58,8 +58,8 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 ├── assets
 │   ├── img
 │   └── src
-├── includes
-├── iroh
+├── app
+├── src
 │   └── Helper
 ├── languages
 ├── node_modules
