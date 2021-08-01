@@ -67,14 +67,14 @@ class Cronjob {
      * @param array $event
 	 * @return array
 	 */
-    public function add_event($event){
+    public function add($event){
 
         $errors = [];
 
         $model = new Assert\Collection([
             'hook'          => new NotBlank(),
             'args'          => new Assert\Type('array'),
-            'timestamp'     =>new Assert\Type('integer'),
+            'timestamp'     => new Assert\Type('integer'),
             'recurrence'    => new NotBlank(),
             'wp_error'      => new Assert\Type('bool'),
         ]);

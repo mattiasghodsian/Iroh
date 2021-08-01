@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register Iroh Helpers as functions
  * 
@@ -39,11 +40,10 @@ if ( !function_exists('posttype') ){
     }
 }
 
-if ( !function_exists('data_get') ){
-    function data_get($target, $key, $default = null)
+if ( !function_exists('arr') ){
+    function arr()
     {
-        $arr_handler = new \Helper\Arr\Handler();
-        return $arr_handler->data_get($target, $key, $default);
+        return new \Helper\Arr\Handler();
     }
 }
 
