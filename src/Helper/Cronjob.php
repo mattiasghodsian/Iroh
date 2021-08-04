@@ -65,7 +65,7 @@ class Cronjob {
 	 * Add cron event 
 	 *
      * @param array $event
-	 * @return array
+	 * @return this
 	 */
     public function add($event){
 
@@ -95,13 +95,15 @@ class Cronjob {
             $this->events[] = $event;
         }
 
+        return $this;
+
     }
 		
     /**
 	 * Add recurrence schedule
 	 *
 	 * @param array $schedule
-	 * @return array
+	 * @return this
 	 */
     public function add_recurrence( $recurrence ){
 
@@ -132,6 +134,7 @@ class Cronjob {
             ];
         }
         
+        return $this;
     }
 
     /**
