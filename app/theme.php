@@ -10,19 +10,15 @@ enqueue()->add([
     'name'    => APP_DOMAIN,
     'path'    => get_stylesheet_uri(),
     'version' => wp_get_theme()->get('Version'),
-]);
-
-enqueue()->add([
+])->add([
     'name'    => 'app',
     'path'    => APP_URI . 'assets/app.css',
     'version' => '1.0.0',
-]);
-
-enqueue()->add([
+])->add([
     'name'    => 'app',
     'path'    => APP_URI . 'assets/app.js',
     'version' => '1.0.0',
-], true);
+], false);
 
 /**
  * Register the initial theme setup.
