@@ -138,7 +138,7 @@ class Enqueue {
      * 
      * @param array $data
      * @param bool $admin
-     * @return void
+     * @return this
      */
     public function add(array $data, bool $admin = false){
 
@@ -156,6 +156,8 @@ class Enqueue {
         }else if ( strpos($data['path'], '.js')  == true ){
             $this->scripts[] = $data;
         }
+
+        return $this;
 
     }
 
