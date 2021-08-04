@@ -59,3 +59,13 @@ if ( !function_exists('acfblock') ){
         return new \Helper\Block\Acf();
     }
 }
+
+if ( !function_exists('main_class') ){
+    function main_class(){
+        if ( has_filter( 'main_class' ) ){
+            $class = "";
+            $class = apply_filters('main_class', $class);
+            echo 'class="'.$class.'"';
+        }
+    }
+}
