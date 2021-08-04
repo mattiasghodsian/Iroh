@@ -59,3 +59,14 @@ function register_upload_mime($mimes)
     return $mimes;
 }
 add_filter('upload_mimes', 'register_upload_mime');
+
+/**
+ * Set class for main HTML tag
+ *
+ * @param string $class
+ * @return string
+ */
+add_filter('main_class', function($class){
+    $class .= "container my-5";
+    return $class;
+});

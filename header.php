@@ -10,4 +10,4 @@
     <header>
         <?php get_template_part('template-parts/global/header'); ?>
     </header>
-    <main class="container my-5">
+    <main <?php main_class(); ?>>
