@@ -64,7 +64,7 @@ class Enqueue {
      * add source rewrite
      * 
      * @param array $rewrite
-     * @return array
+     * @return this
      */
     public function add_rewrite($rewrite){
 
@@ -92,6 +92,8 @@ class Enqueue {
         }else{
             $this->rewrite[] = $rewrite;
         }
+
+        return $this;
 
     }
 
@@ -158,7 +160,6 @@ class Enqueue {
         }
 
         return $this;
-
     }
 
     /**
