@@ -18,7 +18,7 @@ enqueue()->add([
     'name'    => 'app',
     'path'    => APP_URI . 'assets/app.js',
     'version' => '1.0.0',
-], false);
+]);
 
 /**
  * Register the initial theme setup.
