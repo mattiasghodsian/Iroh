@@ -70,3 +70,18 @@ add_filter('main_class', function($class){
     $class .= "container my-5";
     return $class;
 });
+
+/**
+ * Fix BS4 NavWalker for BS5
+ *
+ * @param array $atts
+ * @return array
+ */
+add_filter( 'nav_menu_link_attributes', 'bs5_dropdown_fix' );
+function bs5_dropdown_fix( $atts ) {
+    if ( array_key_exists( 'data-toggle', $atts ) ) {
+        unset( $atts['data-toggle'] );
+        $atts['data-bs-toggle'] = 'dropdown';
+    }
+    return $atts;
+}
