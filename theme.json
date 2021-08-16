@@ -1,0 +1,49 @@
+{
+    "version": 1,
+    "settings": {
+        "color": {
+            "palette": [
+                {
+                  "name": "Primary",
+                  "slug": "primary",
+                  "color": "#0d6efd"
+                },
+                {
+                  "name": "Secondary",
+                  "slug": "secondary",
+                  "color": "#6c757d"
+                },
+                {
+                  "name": "Success",
+                  "slug": "success",
+                  "color": "#198754"
+                },
+                {
+                  "name": "Info",
+                  "slug": "info",
+                  "color": "#0dcaf0"
+                },
+                {
+                  "name": "Warning",
+                  "slug": "warning",
+                  "color": "#ffc107"
+                },
+                {
+                  "name": "Danger",
+                  "slug": "danger",
+                  "color": "#dc3545"
+                },
+                {
+                  "name": "Light",
+                  "slug": "light",
+                  "color": "#f8f9fa"
+                },
+                {
+                  "name": "Dark",
+                  "slug": "dark",
+                  "color": "#212529"
+                }
+            ]
+        }
+    }
+}
