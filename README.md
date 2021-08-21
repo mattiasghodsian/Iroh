@@ -63,7 +63,7 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 │   └── Helper
 ├── languages
 ├── node_modules
-├── template-parts
+├── templates
 │   ├── acf-blocks
 │   └── global
 └── vendor

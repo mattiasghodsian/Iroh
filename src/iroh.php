@@ -69,3 +69,9 @@ if ( !function_exists('main_class') ){
         }
     }
 }
+
+if ( !function_exists('template') ){
+    function template(){
+        return new \Helper\Theme\Template;
+    }
+}

@@ -7,5 +7,5 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <?php get_template_part('template-parts/global/header'); ?>
+    <?php get_template_part('templates/parts/global/header'); ?>
     <main <?php main_class(); ?>>
