@@ -7,8 +7,8 @@ if (!defined('ABSPATH')) { exit; }
 $arr = [
     [
         'name'        => 'example',
-        'title'       => __('Example', 'iroh'),
-        'description' => __('Example description', 'iroh'),
+        'title'       => __('Example', APP_DOMAIN),
+        'description' => __('Example description', APP_DOMAIN),
         'mode'        => 'edit',
     ],
 ];
