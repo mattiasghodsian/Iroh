@@ -93,7 +93,7 @@ class Template {
      * 
      * @return string
      */
-    private function type()
+    public function type()
     {
         if ( $this->query->is_page ) {
             return is_front_page() ? 'front' : 'page';
