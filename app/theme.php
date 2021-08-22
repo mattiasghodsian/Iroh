@@ -85,3 +85,10 @@ function bs5_dropdown_fix( $atts ) {
     }
     return $atts;
 }
+
+/**
+ * Disable emojis
+ * 
+ * @return void
+ */
+disable_emojis();

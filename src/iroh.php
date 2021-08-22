@@ -75,3 +75,10 @@ if ( !function_exists('template') ){
         return new \Helper\Theme\Template;
     }
 }
+
+if ( !function_exists('disable_emojis') ){
+    function disable_emojis() 
+    {
+        add_action('init', [new \Helper\Theme\Template, 'disable_emojis'] );
+    }
+}
