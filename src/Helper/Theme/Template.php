@@ -78,7 +78,7 @@ class Template {
      * @param string $file path to file 
      * @return void dumps an array
      */
-    public function exists($file)
+    private function exists($file)
     {
         if ( !file_exists($file) ){
             dump([
@@ -93,7 +93,7 @@ class Template {
      * 
      * @return string
      */
-    public function type()
+    private function type()
     {
         if ( $this->query->is_page ) {
             return is_front_page() ? 'front' : 'page';
