@@ -1,5 +1,4 @@
 <?php
-if (!defined('ABSPATH')) { exit; }
 
 /**
  * Register Iroh Helpers as functions
