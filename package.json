@@ -1,6 +1,6 @@
 {
-  "name": "iroh-npm",
-  "title": "Iroh",
+  "name": "app-npm",
+  "title": "app",
   "version": "1.0.0",
   "description": "Iroh is a WordPress starter theme which includes some of our favorite tools, helpers and custom solutions, Gets you up and running in no time. Created by developers for developers.",
   "main": "webpack.mix.js",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/mattiasghodsian/Iroh.git"
   },
-  "keywords": [],
+  "keywords": ["wordpress", "starter theme", "theme"],
   "author": "Mattias Ghodsian",
   "license": "GPL-2.0",
   "bugs": {
