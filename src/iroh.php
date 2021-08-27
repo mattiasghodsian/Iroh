@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Register Iroh Helpers as functions
+ * Register Iroh functions
  * 
  * @author Mattias Ghodsian
  * @source https://github.com/mattiasghodsian/Iroh
@@ -79,6 +79,30 @@ if ( !function_exists('template') ){
 if ( !function_exists('disable_emojis') ){
     function disable_emojis() 
     {
-        add_action('init', [new \Helper\Theme\Template, 'disable_emojis'] );
+        add_action('init', [new \Helper\Theme\Disable, 'emojis'] );
+    }
+}
+
+if ( !function_exists('disable_all') ){
+    function disable_all() 
+    {
+        $disable = new \Helper\Theme\Disable;
+        return $disable->all();
+    }
+}
+
+if ( !function_exists('disable_feeds') ){
+    function disable_feeds() 
+    {
+        $disable = new \Helper\Theme\Disable;
+        return $disable->feeds();
+    }
+}
+
+if ( !function_exists('disable_comments') ){
+    function disable_comments() 
+    {
+        $disable = new \Helper\Theme\Disable;
+        return $disable->comments();
     }
 }
