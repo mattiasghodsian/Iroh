@@ -17,7 +17,11 @@
     "type": "git",
     "url": "git+https://github.com/mattiasghodsian/Iroh.git"
   },
-  "keywords": ["wordpress", "starter theme", "theme"],
+  "keywords": [
+    "wordpress",
+    "starter theme",
+    "theme"
+  ],
   "author": "Mattias Ghodsian",
   "license": "GPL-2.0",
   "bugs": {
@@ -32,6 +36,7 @@
     "sass-loader": "^12.1.0"
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.3",
     "bootstrap": "^5.0.2",
     "inputmask": "^5.0.6",
     "sweetalert2": "^11.0.18"
