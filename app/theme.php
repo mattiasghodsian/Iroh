@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) { exit; }
  * @return void
  */
 enqueue()->add([
-    'name'    => APP_DOMAIN,
+    'name'    => 'style',
     'path'    => get_stylesheet_uri(),
     'version' => wp_get_theme()->get('Version'),
 ])->add([
