@@ -6,9 +6,10 @@ if (!defined('ABSPATH')) { exit; }
 | Defines a named constant at runtime.
 |--------------------------------------------------------------------------
 */
+define("APP_ENV", 'dev'); // dev, prod
 define("APP_PATH", get_template_directory() . '/');
 define("APP_URI", get_stylesheet_directory_uri() . '/');
-define('APP_DOMAIN', 'iroh');
+define('APP_DOMAIN', 'app');
 
 /*
 |--------------------------------------------------------------------------
