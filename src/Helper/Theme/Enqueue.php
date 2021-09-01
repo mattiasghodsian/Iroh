@@ -21,6 +21,7 @@ class Enqueue {
     protected $scripts = [];
     protected $styles = [];
     protected $rewrite = [];
+    protected $localizes = [];
     public $errorHandler;
 
     /**
@@ -37,6 +38,8 @@ class Enqueue {
 
         add_filter( 'script_loader_src', [$this, 'rewrite'], 10, 2 ); 
         add_filter( 'style_loader_src', [$this, 'rewrite'], 10, 2 , true); 
+
+        
     }
 
     /** 
@@ -115,7 +118,6 @@ class Enqueue {
                         $style['version']
                     );
                 }
-                
             }
         }
 
@@ -130,7 +132,18 @@ class Enqueue {
                         true
                     );
                 }
-                
+            }
+        }
+
+        if ($this->localizes){
+            foreach ($this->localizes as $key => $localize) {
+                if( $script['admin'] === $admin ){
+                    wp_localize_script(
+                        $localize['handle'],
+                        $localize['name'],
+                        $localize['args']
+                    );
+                }
             }
         }
     }
@@ -160,6 +173,40 @@ class Enqueue {
             $this->styles[] = $data;
         }else if ( strpos($data['path'], '.js')  == true ){
             $this->scripts[] = $data;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Localize scripts
+     * 
+     * @param array $args
+     * @param boolean $admin 
+     */
+    public function localize(array $args, bool $admin = false)
+    {
+        $model = new Assert\Collection([
+            'handle'    => new Assert\Length(['min' => 3]),
+            'name'      => new Assert\Length(['min' => 3]),
+            'args'      => new NotBlank(),
+        ]);
+
+        $validator  = Validation::createValidator();
+        $violations = $validator->validate($args, $model);
+
+        if (0 !== count($violations)) {
+            foreach ($violations as $violation) {
+                $errors[] = [
+                    'property'      => $violation->getPropertyPath(),
+                    'message'       => $violation->getMessageTemplate(),
+                    'parameters'    => $violation->getParameters()
+                ];
+            }
+            $this->errorHandler->dump($errors);
+        }else{
+            $data['admin'] = $admin;
+            $this->localizes[] = $args;
         }
 
         return $this;
