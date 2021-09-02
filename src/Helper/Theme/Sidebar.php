@@ -15,7 +15,12 @@ use Helper\Arr\Handler;
 
 class Sidebar
 {
+    /**
+     * @var array $sidebar
+     * @var Handler $handler
+     */
     public $sidebars;
+    public $handler;
 
     public function __construct()
     {
@@ -47,6 +52,11 @@ class Sidebar
         return $this;
     }
 
+    /**
+     * register
+     *
+     * @return void
+     */
     public function register()
     {
         if (!empty($this->sidebars)) {
