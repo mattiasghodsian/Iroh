@@ -90,6 +90,9 @@ class Endpoints
             'callback'            => [
                 new NotBlank(),
             ],
+            'args'            => [
+                new NotBlank(),
+            ],
             'permission_callback' => [
                 new NotBlank(),
             ],
