@@ -12,6 +12,7 @@
 namespace Helper\Theme;
 
 use Helper\Arr\Handler;
+use Helper\ErrorHandler;
 
 class Widget extends \WP_Widget
 {
@@ -19,6 +20,8 @@ class Widget extends \WP_Widget
      * @var array $handler
      */
     private $handler;
+    private $error;
+    public $name;
 
     public function __construct(
         $id_base, $name,
@@ -29,9 +32,42 @@ class Widget extends \WP_Widget
             $widget_option, $control_option
         );
 
+        $this->name    = $name;
         $this->handler = new Handler;
+        $this->error   = new ErrorHandler;
 
         add_action('widgets_init', [$this, 'register']);
+    }
+
+    /**
+     * actions
+     *
+     * @param array $args
+     *
+     * @return void
+     */
+    public function actions(array $args)
+    {
+        foreach ($args as $method => $arg) {
+            if (!method_exists($this, strtolower($method))) {
+                $this->error->dump([sprintf('Method %s does not exist', $method)]);
+            }
+
+            $output = $this->handler->data_get($arg, 'output');
+
+            $this->add_action($output, $method);
+
+        }
+    }
+
+    public function add_action($output, $method)
+    {
+        add_action(
+            'iroh_widget_' . strtolower($method) . '_' . $this->name,
+            function ($instance) use ($output) {
+                //Admin render here
+            }
+        );
     }
 
     /**
@@ -46,8 +82,7 @@ class Widget extends \WP_Widget
 
     public function form($instance)
     {
-
-        // Used for creating admin panel layouts of widget
+        do_action('iroh_widget_form_' . $this->name, $instance);
     }
 
     public function widget($args, $instance)
@@ -59,7 +94,6 @@ class Widget extends \WP_Widget
     public function update($new_instance, $old_instance)
     {
 
-        // updates the widget instance
     }
 
 }
