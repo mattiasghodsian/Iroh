@@ -1,0 +1,31 @@
+#mainNav{
+    .nav-link{
+        color: $secondary;
+    }
+}
+
+footer{
+    .ft-logo{
+        max-height: 80px;
+    }
+}
+
+#searchform{
+
+    > div {
+        @extend .d-flex;
+    }
+
+    #s{
+        @extend .form-control;
+        @extend .me-2;
+    }
+    #searchsubmit{
+        @extend .btn;
+        @extend .btn-outline-success;
+    }
+
+    label  {
+        display: none;
+    }
+}

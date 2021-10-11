@@ -1,7 +1,5 @@
-        </div>
-    <footer>
-        <?php get_template_part('template-parts/global/footer'); ?>
-    </footer>
-    <?php wp_footer(); ?>
-</body>
+            </main>
+            <?php get_template_part('templates/parts/global/footer'); ?>
+        <?php wp_footer(); ?>
+    </body>
 </html>

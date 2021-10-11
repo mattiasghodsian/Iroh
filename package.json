@@ -1,0 +1,44 @@
+{
+  "name": "app-npm",
+  "title": "app",
+  "version": "1.0.0",
+  "description": "Iroh is a WordPress starter theme which includes some of our favorite tools, helpers and custom solutions, Gets you up and running in no time. Created by developers for developers.",
+  "main": "webpack.mix.js",
+  "scripts": {
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "watch-poll": "npm run watch -- --watch-poll",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattiasghodsian/Iroh.git"
+  },
+  "keywords": [
+    "wordpress",
+    "starter theme",
+    "theme"
+  ],
+  "author": "Mattias Ghodsian",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/mattiasghodsian/Iroh/issues"
+  },
+  "homepage": "https://github.com/mattiasghodsian/Iroh#readme",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "laravel-mix": "^6.0.25",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.35.1",
+    "sass-loader": "^12.1.0"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.9.3",
+    "bootstrap": "^5.0.2",
+    "inputmask": "^5.0.6",
+    "sweetalert2": "^11.0.18"
+  }
+}

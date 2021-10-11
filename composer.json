@@ -1,6 +1,15 @@
 {
     "require": {
-        "symfony/var-dumper": "^5.2",
-        "twbs/bootstrap": "^4.6"
+        "wp-bootstrap/wp-bootstrap-navwalker": "^4.3",
+        "symfony/validator": "^5.3",
+        "doctrine/annotations": "^1.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Helper\\": "src/Helper/"
+        }
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.3"
     }
 }

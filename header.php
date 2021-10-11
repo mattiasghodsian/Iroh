@@ -7,7 +7,5 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-    <div id="page-header">
-        <?php get_template_part('template-parts/global/header'); ?>
-    </div>
-    <div id="page-wrapper" class="container">
+    <?php get_template_part('templates/parts/global/header'); ?>
+    <main <?php main_class(); ?>>
