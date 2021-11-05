@@ -12,10 +12,7 @@
   <a href="https://github.com/mattiasghodsian/Iroh/">
     <img alt="Build Status" src="https://img.shields.io/github/stars/mattiasghodsian/iroh?style=flat-square" />
   </a>
-  <a href="https://github.com/mattiasghodsian/Iroh/">
-    <img alt="Contributors" src="https://img.shields.io/github/contributors/mattiasghodsian/iroh?style=flat-square">  
-  </a>
-  <a href="LICENSE">
+  <a href="https://en.cryptobadges.io/donate/0xBBB96204E45D11C9799c6B12E6eE6F0d4A071Ef5">
     <img alt="Donate Ethereum" src="https://img.shields.io/static/v1?label=donate&message=ethereum&color=blue&style=flat-square" />
   </a>
 </p>
@@ -23,10 +20,6 @@
 <p align="center">
   <a href="https://github.com/mattiasghodsian/Iroh/wiki">
     Documentation
-  </a>
-  |
-  <a href="CHANGELOG">
-    Change Log 
   </a>
 </p>
 
