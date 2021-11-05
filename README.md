@@ -86,3 +86,6 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
   ```sh
   $ npm install
   ```
+
+# Contributors
+<a href="https://github.com/MartinMyr">MartinMyr</a>
