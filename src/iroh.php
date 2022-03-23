@@ -106,3 +106,14 @@ if ( !function_exists('disable_comments') ){
         return $disable->comments();
     }
 }
+
+if ( !function_exists('duplicate') ){
+    function post_duplicate() 
+    {
+        return New \Helper\Theme\Duplicate;
+    }
+}
+
+
+
+
