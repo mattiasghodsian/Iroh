@@ -2,6 +2,13 @@
 if (!defined('ABSPATH')) { exit; }
 
 /**
+ * Register Post Duplicate
+ * 
+ * @return void
+ */
+post_duplicate()->register(['post','page']);
+
+/**
  * Register theme assets.
  *
  * @return void
