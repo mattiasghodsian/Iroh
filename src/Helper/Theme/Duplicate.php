@@ -13,6 +13,8 @@ namespace Helper\Theme;
 
 class Duplicate
 {
+    const DUPLICATE_FAILED = 'Could not duplicate post.';
+
     protected $current_user;
 
     public function __construct()
@@ -71,12 +73,11 @@ class Duplicate
         $nonce = sanitize_text_field($_REQUEST['wp_nonce']);
         $postId = sanitize_text_field($_REQUEST['post_id']);
 
-        if (wp_verify_nonce($nonce, 'iroh-duplicate-'.$postId) && current_user_can('edit_posts')){
-            $this->duplicate($postId);
-        }else{
+        if (!wp_verify_nonce($nonce, 'iroh-duplicate-'.$postId) || !current_user_can('edit_posts')){
             wp_die(__('WP Nonce not valid or You don´t have access, Please try again.', APP_DOMAIN));
         }
 
+        $this->duplicate($postId);
     }
     
     /**
@@ -89,34 +90,31 @@ class Duplicate
     {
         $post = get_post($postID);
 
-        if (isset($post) && $post != null) {
-
-            $newPostId = wp_insert_post([
-                'post_type' => $post->post_type,
-                'post_title' => $post->post_title,
-                'post_status' => "draft",
-                'post_content' => $post->post_content,
-                'post_excerpt' => $post->post_excerpt,
-                'post_parent' => $post->post_parent,
-                'post_password' => $post->post_password,
-                'comment_status' => $post->comment_status,
-                'ping_status' => $post->ping_status,
-                'post_author' => $this->current_user->ID,
-                'to_ping' => $post->to_ping,
-                'menu_order' => $post->menu_order
-            ], true);
-
-            if (is_wp_error($newPostId)){
-                wp_die(__('Could not duplicate post.', APP_DOMAIN));
-            }else{
-                $this->postMeta($postID, $newPostId);
-                wp_redirect(esc_url_raw(admin_url('edit.php?post_type='.$post->post_type)));
-            }
-
-        }else{
-            wp_die(__('Could not duplicate post.', APP_DOMAIN));
+        if (!isset($post) || is_null($post)) {
+            wp_die(__(self::DUPLICATE_FAILED, APP_DOMAIN));
         }
 
+        $newPostId = wp_insert_post([
+            'post_type' => $post->post_type,
+            'post_title' => $post->post_title,
+            'post_status' => "draft",
+            'post_content' => $post->post_content,
+            'post_excerpt' => $post->post_excerpt,
+            'post_parent' => $post->post_parent,
+            'post_password' => $post->post_password,
+            'comment_status' => $post->comment_status,
+            'ping_status' => $post->ping_status,
+            'post_author' => $this->current_user->ID,
+            'to_ping' => $post->to_ping,
+            'menu_order' => $post->menu_order
+        ], true);
+
+        if (is_wp_error($newPostId)){
+            wp_die(__(self::DUPLICATE_FAILED, APP_DOMAIN));
+        }
+
+        $this->postMeta($postID, $newPostId);
+        wp_redirect(esc_url_raw(admin_url('edit.php?post_type='.$post->post_type)));
     }
 
     protected function postMeta(int $oldPostId, int $newPostId)
