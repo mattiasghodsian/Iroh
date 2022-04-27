@@ -44,41 +44,7 @@ Iroh is a WordPress starter theme which includes some of our favorite tools, hel
 - [Bootstrap](https://getbootstrap.com/)
 - [WP Bootstrap Navwalker](https://github.com/wp-bootstrap/wp-bootstrap-navwalker)
 
-## Theme structure
-```bash
-.
-├── acf-json
-├── assets
-│   ├── img
-│   └── src
-├── app
-├── src
-│   └── Helper
-├── languages
-├── node_modules
-├── templates
-│   ├── archive
-│   ├── single
-│   ├── taxonomy
-│   └── parts
-│      ├── acf-blocks
-│      └── global
-└── vendor
-```
-
-## Get started
-1. Navigate to themes folder in your WordPress installation and clone the repository
-  ```sh
-  $ git clone git@github.com:mattiasghodsian/Iroh.git
-  ```
-2. Install composer dependencies
-  ```sh
-  $ composer install
-  ```
-3. Install npm packages
-  ```sh
-  $ npm install
-  ```
-
 # Contributors
-<a href="https://github.com/MartinMyr">MartinMyr</a>
+<a href="https://github.com/mattiasghodsian/iroh/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=mattiasghodsian/iroh" />
+</a>
